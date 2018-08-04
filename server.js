@@ -1,30 +1,27 @@
 const express = require('express')
+const hbs = require('hbs')
 
 const app = express()
 
+app.set('view engine', 'hbs')
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
   res.send({
     language: 'javascript',
-    libraries: [
-      'node',
-      'express',
-      'react'
-    ]
+    libraries: ['node', 'express', 'react'],
   })
 })
 
 app.get('/about', (req, res) => {
-  res.send({
-    country: 'denmark',
-    city: 'copenhagen'
+  res.render('about.hbs', {
+    pageTitle: 'About Page',
   })
 })
 
 app.get('/bad', (req, res) => {
   res.send({
-    errorMessage: 'Unable to handle request'
+    errorMessage: 'Unable to handle request',
   })
 })
 
