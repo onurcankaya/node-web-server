@@ -6,6 +6,13 @@ const app = express()
 app.set('view engine', 'hbs')
 app.use(express.static(__dirname + '/public'))
 
+app.use((req, res, next) => {
+  const now = new Date().toString()
+
+  console.log(`${now}`)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send({
     language: 'javascript',
